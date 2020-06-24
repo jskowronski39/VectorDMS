@@ -1,3 +1,7 @@
+# IDEs
+nbproject
+.idea
+.vs
 
 ###> symfony/framework-bundle ###
 /.env.local
