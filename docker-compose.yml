@@ -35,6 +35,7 @@ services:
         working_dir: /application
         volumes:
             - .:/application
+            - ./docker/mysql/conf.d/custom.cnf:/etc/mysql/conf.d/custom.cnf
         environment:
             - MYSQL_ALLOW_EMPTY_PASSWORD=true
             - MYSQL_ROOT_PASSWORD=
