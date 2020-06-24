@@ -1,0 +1,76 @@
+<?php
+
+declare(strict_types=1);
+
+$finder = PhpCsFixer\Finder::create()
+    ->in(__DIR__)
+    ->exclude('node_modules')
+    ->exclude('var')
+    ->exclude('docker')
+    ->exclude('vendor_override')
+;
+
+// see: https://mlocati.github.io/php-cs-fixer-configurator
+return PhpCsFixer\Config::create()
+    ->setLineEnding("\n") // Linux LF line ending
+    ->setRiskyAllowed(true)
+    ->setRules([
+        // Use "risky" rule sets for new projects only
+        '@DoctrineAnnotation' => true,
+        '@PhpCsFixer' => true,
+        '@PhpCsFixer:risky' => true,
+
+        // Uncomment @PHPx rules up to target PHP version
+        '@PHP70Migration' => true,
+        '@PHP70Migration:risky' => true,
+        '@PHP71Migration' => true,
+        '@PHP71Migration:risky' => true,
+        '@PHP73Migration' => true,
+
+        // License header
+        'header_comment' => [
+            'comment_type' => 'comment',
+            'header' => file_get_contents('LICENSE_HEADER'),
+            'location' => 'after_open',
+            'separate' => 'both',
+        ],
+
+        // Rules overrides
+        'native_constant_invocation' => true,
+        'native_function_invocation' => true,
+        'single_line_comment_style' => false,
+        'ordered_class_elements' => [
+            'order' => [
+                'use_trait', // traits
+
+                'constant_public', // constants
+                'constant_protected',
+                'constant_private',
+
+                'property_public_static', // static properties
+                'property_protected_static',
+                'property_private_static',
+
+                'property_public', // properties
+                'property_protected',
+                'property_private',
+
+                'construct', // magic methods
+                'destruct',
+                'magic',
+
+                'method_public_static', // static methods
+                'method_protected_static',
+                'method_private_static',
+
+                'method_public', // methods
+                'method_protected',
+                'method_private',
+
+                'phpunit', // PHPUnit
+            ],
+            'sortAlgorithm' => 'none',
+        ],
+    ])
+    ->setFinder($finder)
+;
