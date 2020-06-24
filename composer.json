@@ -6,6 +6,9 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "friendsofphp/php-cs-fixer": "^2.16",
+        "phpstan/phpstan": "^0.12.30",
+        "phpstan/phpstan-doctrine": "^0.12.17",
+        "phpstan/phpstan-symfony": "^0.12.6",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "5.1.*",
         "symfony/console": "5.1.*",
@@ -76,6 +79,9 @@
         ],
         "cs": [
             "php vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix"
+        ],
+        "stan": [
+            "php vendor/phpstan/phpstan/phpstan analyse src --memory-limit=256M"
         ]
     },
     "conflict": {
