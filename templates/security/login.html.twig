@@ -1,18 +1,21 @@
-{% extends 'container.html.twig' %}
+{% extends 'split_view.html.twig' %}
 
 {% trans_default_domain 'security' %}
 
-{% block content %}
-    <div class="d-flex justify-content-center my-3">
-        <div class="col-lg-4">
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
+{% block sidebar_content %}
+    <div class="col-12 px-0">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
 
-            <div class="form-group d-flex justify-content-between">
-                <button type="submit" class="btn btn-primary">{{ 'label.log_in'|trans }}</button>
-            </div>
-
-            {{ form_end(form) }}
+        <div class="form-group d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary">{{ 'label.log_in'|trans }}</button>
         </div>
+
+        {{ form_end(form) }}
     </div>
+{% endblock %}
+
+{% block styles %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('login') }}
 {% endblock %}

@@ -1,0 +1,44 @@
+.container-fluid {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+}
+
+.sidebar {
+    width: 500px;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: #f5f5f5;
+
+    .sidebar-header {
+        padding: 10px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .sidebar-content {
+        padding-left: 10px;
+        padding-right: 10px;
+
+        display: flex;
+        flex-grow: 1;
+    }
+
+    .sidebar-footer {
+        padding: 10px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.window {
+    width: 100%;
+}

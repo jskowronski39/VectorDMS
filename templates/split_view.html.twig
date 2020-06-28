@@ -1,0 +1,31 @@
+{% extends 'container_fluid.html.twig' %}
+
+{% block content %}
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <span>{{ app_name }}</span>
+            {% if is_granted('ROLE_USER') %}
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                        {{ 'label.greetings'|trans }}, {{ app.user.firstName ?? app.user.username  }}
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ path('app_security_logout') }}">Logout</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <div class="sidebar-content">
+            {% block sidebar_content %}{% endblock %}
+        </div>
+        <div class="sidebar-footer">v 0.1.0</div>
+    </div>
+    <div class="window">
+        {% block window %}{% endblock %}
+    </div>
+{% endblock %}
+
+{% block styles %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('split_view') }}
+{% endblock %}
