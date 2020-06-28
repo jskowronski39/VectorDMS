@@ -1,0 +1,8 @@
+label:
+    email: E-mail
+    password: Hasło
+    log_in: Zaloguj
+
+form_error:
+    database_connection_error_occurred: Wystąpił błąd połączenia z bazą danych
+    the_username_or_password_is_incorrect: Błędny login lub hasło
