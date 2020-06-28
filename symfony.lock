@@ -114,6 +114,9 @@
             ".php_cs.dist"
         ]
     },
+    "hackzilla/password-generator": {
+        "version": "1.5.0"
+    },
     "monolog/monolog": {
         "version": "2.1.0"
     },

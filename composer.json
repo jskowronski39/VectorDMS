@@ -7,6 +7,7 @@
         "ext-iconv": "*",
         "elao/enum": "^1.9",
         "friendsofphp/php-cs-fixer": "^2.16",
+        "hackzilla/password-generator": "^1.5",
         "phpstan/phpstan": "^0.12.30",
         "phpstan/phpstan-doctrine": "^0.12.17",
         "phpstan/phpstan-symfony": "^0.12.6",
