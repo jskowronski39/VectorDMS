@@ -1,0 +1,69 @@
+<?php
+
+/*
+ * This file is part of the Vector DMS package.
+ *
+ * (c) Jakub Skowroński
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace App\EventSubscriber\Doctrine;
+
+use App\Entity\EntityInterface;
+use App\Entity\User\UserInterface;
+use Doctrine\Common\EventSubscriber;
+use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Events;
+use Symfony\Component\Security\Core\Security;
+
+class EntityBlameableSubscriber implements EventSubscriber
+{
+    /** @var Security */
+    protected $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
+    public function getSubscribedEvents(): array
+    {
+        return [
+            Events::prePersist,
+            Events::preUpdate,
+        ];
+    }
+
+    public function prePersist(LifecycleEventArgs $args): void
+    {
+        /** @var null|UserInterface $currentUser */
+        $currentUser = $this->security->getUser();
+        $entity = $args->getEntity();
+
+        if ($entity instanceof EntityInterface && $currentUser) {
+            $entity->setCreatedBy($currentUser);
+        }
+    }
+
+    public function preUpdate(LifecycleEventArgs $args): void
+    {
+        /** @var EntityInterface $entity */
+        $entity = $args->getEntity();
+        $this->markEntityAsUpdated($entity);
+    }
+
+    public function markEntityAsUpdated(?EntityInterface $entity): void
+    {
+        /** @var null|UserInterface $currentUser */
+        $currentUser = $this->security->getUser();
+
+        if ($entity && $currentUser) {
+            $entity->setLastUpdatedAt(new \DateTimeImmutable());
+            $entity->setLastUpdatedBy($currentUser);
+        }
+    }
+}

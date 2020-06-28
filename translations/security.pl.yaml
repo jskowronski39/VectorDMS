@@ -1,0 +1,8 @@
+label:
+    email: E-mail
+    password: Password
+    log_in: Log in
+
+form_error:
+    database_connection_error_occurred: Database connection error occured
+    the_username_or_password_is_incorrect: Incorrect username or password
