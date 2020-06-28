@@ -16,3 +16,9 @@ doctrine:
                 dir: '%kernel.project_dir%/config/doctrine'
                 prefix: 'App\Entity'
                 alias: App
+            User:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/config/doctrine/User'
+                prefix: 'App\Entity\User'
+                alias: User
